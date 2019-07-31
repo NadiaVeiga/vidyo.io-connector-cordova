@@ -126,8 +126,8 @@ public class VidyoIOActivity extends Activity implements Connector.IConnect, Con
         Intent intent = getIntent();
         mHost.setText(intent.hasExtra("host") ? intent.getStringExtra("host") : "prod.vidyo.io");
         mToken.setText(intent.hasExtra("token") ? intent.getStringExtra("token") : "cHJvdmlzaW9uAHN1bWl0QGRkYTg0MC52aWR5by5pbwA2MzY1ODg4MTAyOAAAMTYyNGJmM2IwMGQ3ODdjNmFkNGIyNzE3YTgxNTlkMGUzMDA3NzQxZTZkOWQzYjEwMTY4ZTMxMWZhZDE4MmMxNmVmOWQwNmQyZDQxMGZjMGUzMzUyZDg5ZWQ5Mzk5NDc3");
-        mDisplayName.setText(intent.hasExtra("displayName") ? intent.getStringExtra("displayName") : "");
-        mResourceId.setText(intent.hasExtra("resourceId") ? intent.getStringExtra("resourceId") : "demoRoom");
+        mDisplayName.setText(intent.hasExtra("displayName") ? intent.getStringExtra("displayName") : "AnonymousUser");
+        mResourceId.setText(intent.hasExtra("resourceId") ? intent.getStringExtra("resourceId") : "Appointment");
         mReturnURL = intent.hasExtra("returnURL") ? intent.getStringExtra("returnURL") : null;
         mHideConfig = intent.getBooleanExtra("hideConfig", false);
         mAutoJoin = intent.getBooleanExtra("autoJoin", false);
@@ -232,10 +232,14 @@ public class VidyoIOActivity extends Activity implements Connector.IConnect, Con
         super.onStop();
     }
 
+
     @Override
     protected void onDestroy() {
         mLogger.Log("onDestroy");
-        // ConnectorPkg.uninitialize();
+         ConnectorPkg.setApplicationUIContext(null);
+
+        // Uninitialize the VidyoClient library - this should be done once in the lifetime of the application.
+        ConnectorPkg.uninitialize();
 
         if (mVidyoConnector != null) {
             mVidyoConnector.unregisterLogEventListener();
@@ -247,6 +251,24 @@ public class VidyoIOActivity extends Activity implements Connector.IConnect, Con
 
         super.onDestroy();
     }
+    
+    
+    /*@Override
+    protected void onDestroy() {
+        mLogger.Log("onDestroy");
+         ConnectorPkg.uninitialize();
+
+        if (mVidyoConnector != null) {
+            mVidyoConnector.unregisterLogEventListener();
+            mVidyoConnector.unregisterLocalCameraEventListener();
+   
+            mVidyoConnector.disable();
+            mVidyoConnector = null;
+        }
+
+        super.onDestroy();
+    }*/
+   
 
     // The device interface orientation has changed
     @Override
