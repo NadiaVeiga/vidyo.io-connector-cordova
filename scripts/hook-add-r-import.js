@@ -21,11 +21,11 @@ module.exports = function(ctx) {
   // Add java files where you want to add R.java imports in the following array
 
   /*MR*/
-  /*var filestoreplace = [
-      path.join(ctx.opts.projectRoot, "platforms/android/src/com/vidyo/vidyoconnector/VidyoIOActivity.java")*/
-                                            
   var filestoreplace = [
-      path.join(ctx.opts.projectRoot, "src/android/com/vidyo/vidyoconnector/VidyoIOActivity.java")
+      path.join(ctx.opts.projectRoot, "platforms/android/src/com/vidyo/vidyoconnector/VidyoIOActivity.java")
+                                            
+ /* var filestoreplace = [
+      path.join(ctx.opts.projectRoot, "src/android/com/vidyo/vidyoconnector/VidyoIOActivity.java")*/
   ];
   filestoreplace.forEach(function(val, index, array) {
       
