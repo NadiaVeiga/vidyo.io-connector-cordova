@@ -22,9 +22,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+
+/*import com.vidyo.vidyoiohybrid.R;*/
 /*MR*/
-import com.vidyo.vidyoiohybrid.R;
-/*import com.outsystemsenterprise.medtronicdev.R;*/
+import com.outsystemsenterprise.medtronicdev.R;
 
 import com.vidyo.VidyoClient.Connector.Connector;
 import com.vidyo.VidyoClient.Connector.ConnectorPkg;
